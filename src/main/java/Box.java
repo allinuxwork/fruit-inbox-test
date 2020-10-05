@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Box<F extends Fruit> {
@@ -19,8 +18,8 @@ public class Box<F extends Fruit> {
 
     public boolean compare(Box<?> o) {
 //        избегаем ошибки округления с помощью дельты
-//        return Math.abs(this.getWeight() - o.getWeight()) < 0.001;
-        if (Math.abs(this.getWeight() - o.getWeight()) < 0.001) {
+//        return Math.abs(this.getWeight() - o.getWeight()) < 0.0001;
+        if (Math.abs(this.getWeight() - o.getWeight()) < 0.0001) {
             System.out.println("Вес фруктов равен");
             return true;
         }
@@ -29,15 +28,16 @@ public class Box<F extends Fruit> {
     }
 
 
-    public void fillBox(Box<F> inBox) {
+    public boolean fillBox(Box<F> inBox) {
         // при попытке пересыпать коробки в саму себя, ничего не делать
         if (inBox == this) {
             System.out.println("В саму себя не пересыплю");
-            return;
+            return false;
         }
 
         inBox.box.addAll(box);
         box.clear();
+        return true;
     }
 
     public void addFruit(F fruit, int amount) {
@@ -48,8 +48,11 @@ public class Box<F extends Fruit> {
 
     @Override
     public String toString() {
-        return "Box{" +
-            "box=" + box + box.size() +
-            '}';
+//        return "Box{" +
+//            "box=" + box + box.size() +
+//            '}';
+        return " - Общий вес Box " + box +
+            " Kоличество - " + box.size();
+
     }
 }

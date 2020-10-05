@@ -1,6 +1,5 @@
 public abstract class Fruit {
     private double weight;
-    private int amount;
 
     public Fruit(double weight) {
         this.weight = weight;
